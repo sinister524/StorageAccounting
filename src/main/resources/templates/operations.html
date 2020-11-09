@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>Операции</title>
+
+</head>
+<body>
+<header th:insert="fragments/header :: header"></header>
+<div class="container">
+    <h2>Операции</h2>
+
+    <div th:each="operation : ${operations}">
+        <div class="row">
+            <div class="col-md-3" th:text="${operation.date}">Date</div>
+            <div class="col-md-3" th:text="${operation.contract.name}">contract</div>
+            <div class="col-md-3" th:text="${operation.contractor.name}">contractor</div>
+            <div class="col-md-3" th:text="${operation.type}">contractor</div>
+            <div class="col-md-3">
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="true" aria-controls="collapse"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                        Подробнее
+                    </font></font></button>
+            </div>
+        </div>
+        <div class="collapse show" id="collapse" style="">
+            <div class="card card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm" th:each="operationProduct : ${operation.operationProducts}">
+                        <thead>
+                        <tr>
+                            <th>Тип</th>
+                            <th>Категория</th>
+                            <th>Брэнд</th>
+                            <th>Количество</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:text="${operationProduct.product.productType.name}">Type</td>
+                            <td th:text="${operationProduct.product.category.name}">Category</td>
+                            <td th:text="${operationProduct.product.brand.name}">brand</td>
+                            <td th:text="${operationProduct.quantity}">Quantity</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+</html>

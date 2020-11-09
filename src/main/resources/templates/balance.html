@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>Остатки на складе</title>
+
+</head>
+<body>
+    <header th:insert="fragments/header :: header"></header>
+    <div class="container">
+        <h2>Остатки на складе</h2>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-sm" th:each="balance : ${balances}">
+                <thead>
+                <tr>
+                    <th>Тип</th>
+                    <th>Категория</th>
+                    <th>Брэнд</th>
+                    <th>Количество</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td th:text="${balance.product.productType.name}">Type</td>
+                    <td th:text="${balance.product.category.name}">Category</td>
+                    <td th:text="${balance.product.brand.name}">brand</td>
+                    <td th:text="${balance.quantity}">Quantity</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
